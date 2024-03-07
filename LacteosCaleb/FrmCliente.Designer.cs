@@ -52,7 +52,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label10.Location = new System.Drawing.Point(41, 23);
+            this.label10.Location = new System.Drawing.Point(40, 71);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(65, 20);
             this.label10.TabIndex = 59;
@@ -60,7 +60,7 @@
             // 
             // txtbuscarcliente
             // 
-            this.txtbuscarcliente.Location = new System.Drawing.Point(121, 23);
+            this.txtbuscarcliente.Location = new System.Drawing.Point(120, 71);
             this.txtbuscarcliente.Name = "txtbuscarcliente";
             this.txtbuscarcliente.Size = new System.Drawing.Size(352, 20);
             this.txtbuscarcliente.TabIndex = 58;
