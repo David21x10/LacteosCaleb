@@ -60,10 +60,14 @@
             this.RPARCIAL = new System.Windows.Forms.Label();
             this.RIVA = new System.Windows.Forms.Label();
             this.RPAGAR = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label14 = new System.Windows.Forms.Label();
+            this.FactDet = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.preciotextbox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cantidadtxt = new System.Windows.Forms.TextBox();
+            this.producttxt = new System.Windows.Forms.TextBox();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -169,10 +173,6 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
             this.Column5});
             this.dataGridView1.Location = new System.Drawing.Point(31, 276);
             this.dataGridView1.Name = "dataGridView1";
@@ -230,6 +230,7 @@
             this.label9.Size = new System.Drawing.Size(52, 15);
             this.label9.TabIndex = 25;
             this.label9.Text = "PAGAR";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
@@ -412,25 +413,77 @@
             this.RPAGAR.TabIndex = 57;
             this.RPAGAR.Text = ".";
             // 
-            // Column1
+            // label14
             // 
-            this.Column1.HeaderText = "IDFACTURA";
-            this.Column1.Name = "Column1";
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label14.Location = new System.Drawing.Point(591, 123);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(81, 20);
+            this.label14.TabIndex = 65;
+            this.label14.Text = "Factura#";
             // 
-            // Column2
+            // FactDet
             // 
-            this.Column2.HeaderText = "Producto";
-            this.Column2.Name = "Column2";
+            this.FactDet.Location = new System.Drawing.Point(710, 125);
+            this.FactDet.Name = "FactDet";
+            this.FactDet.Size = new System.Drawing.Size(213, 20);
+            this.FactDet.TabIndex = 58;
             // 
-            // Column3
+            // label15
             // 
-            this.Column3.HeaderText = "Cantidad";
-            this.Column3.Name = "Column3";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label15.Location = new System.Drawing.Point(591, 151);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(91, 20);
+            this.label15.TabIndex = 64;
+            this.label15.Text = "Producto#";
             // 
-            // Column4
+            // preciotextbox
             // 
-            this.Column4.HeaderText = "Precio";
-            this.Column4.Name = "Column4";
+            this.preciotextbox.Location = new System.Drawing.Point(710, 203);
+            this.preciotextbox.Name = "preciotextbox";
+            this.preciotextbox.Size = new System.Drawing.Size(213, 20);
+            this.preciotextbox.TabIndex = 61;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label16.Location = new System.Drawing.Point(591, 203);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 20);
+            this.label16.TabIndex = 63;
+            this.label16.Text = "Precio";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label17.Location = new System.Drawing.Point(591, 175);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(81, 20);
+            this.label17.TabIndex = 62;
+            this.label17.Text = "Cantidad";
+            // 
+            // cantidadtxt
+            // 
+            this.cantidadtxt.Location = new System.Drawing.Point(710, 177);
+            this.cantidadtxt.Name = "cantidadtxt";
+            this.cantidadtxt.Size = new System.Drawing.Size(213, 20);
+            this.cantidadtxt.TabIndex = 60;
+            // 
+            // producttxt
+            // 
+            this.producttxt.Location = new System.Drawing.Point(710, 151);
+            this.producttxt.Name = "producttxt";
+            this.producttxt.Size = new System.Drawing.Size(213, 20);
+            this.producttxt.TabIndex = 66;
             // 
             // Column5
             // 
@@ -443,6 +496,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(998, 515);
+            this.Controls.Add(this.producttxt);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.FactDet);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.preciotextbox);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.cantidadtxt);
             this.Controls.Add(this.RPAGAR);
             this.Controls.Add(this.RIVA);
             this.Controls.Add(this.RPARCIAL);
@@ -522,10 +583,14 @@
         private System.Windows.Forms.Label RPARCIAL;
         private System.Windows.Forms.Label RIVA;
         private System.Windows.Forms.Label RPAGAR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox FactDet;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox preciotextbox;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox cantidadtxt;
+        private System.Windows.Forms.TextBox producttxt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

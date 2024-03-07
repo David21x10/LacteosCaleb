@@ -53,7 +53,7 @@ namespace LacteosCaleb
            
 
             Conex.Grids("select * from FACTURAENCABEZADO", dataGridView2);
-            //Conex.Grids("select * from FACTURADETALLE",dataGridView1);
+            Conex.Grids("select * from FACTURADETALLE",dataGridView1);
             
         }
 
@@ -62,84 +62,43 @@ namespace LacteosCaleb
             DateTime fec;
 
             // Obtener el valor de la primera columna del DataGridView (IdFacEn)
-            string idFacEn = dataGridView1.Rows[0].Cells[0].Value.ToString(); // Suponiendo que el IdFacEn está en la primera columna
+           // string idFacEn = dataGridView1.Rows[0].Cells[0].Value.ToString(); // Suponiendo que el IdFacEn está en la primera columna
 
             // Obtener otros datos de los TextBox
-            fec = dateTimePicker1.Value;
-            string nom = txtUsuario.Text;
-            bool est = checkBoxEstado.Checked;
-            string dni = txtDNI.Text;
+            //fec = dateTimePicker1.Value;
+            //string nom = txtUsuario.Text;
+            //bool est = checkBoxEstado.Checked;
+            //string dni = txtDNI.Text;
 
             // Guardar los datos en la tabla FACTURAENCABEZADO
-            string cadenaConexion = "Data Source=DESKTOP-09GMK57\\SQLEXPRESS;Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true ";
-            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-            {
-                conexion.Open();
+           // string cadenaConexion = "Data Source=DESKTOP-09GMK57\\SQLEXPRESS;Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true ";
+            //using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            //{
+                //conexion.Open();
 
-                string consulta = "INSERT INTO FACTURAENCABEZADO (IdFactEn, FecFacEn, NomUsu, EstFacEn, DNI) VALUES (@IdFacEnc, @Fec, @Nom, @Est, @Dni)";
-                using (SqlCommand comando = new SqlCommand(consulta, conexion))
-                {
-                    comando.Parameters.AddWithValue("@IdFacEnc", idFacEn);
-                    comando.Parameters.AddWithValue("@Fec", fec);
-                    comando.Parameters.AddWithValue("@Nom", nom);
-                    comando.Parameters.AddWithValue("@Est", est);
-                    comando.Parameters.AddWithValue("Dni", dni);
+                //string consulta = "INSERT INTO FACTURAENCABEZADO (IdFactEn, FecFacEn, NomUsu, EstFacEn, DNI) VALUES (@IdFacEnc, @Fec, @Nom, @Est, @Dni)";
+                //using (SqlCommand comando = new SqlCommand(consulta, conexion))
+               // {
+                   // comando.Parameters.AddWithValue("@IdFacEnc", idFacEn);
+                   // comando.Parameters.AddWithValue("@Fec", fec);
+                    //comando.Parameters.AddWithValue("@Nom", nom);
+                   // comando.Parameters.AddWithValue("@Est", est);
+                    //comando.Parameters.AddWithValue("Dni", dni);
                     
-                    comando.ExecuteNonQuery();
-                }
+                   // comando.ExecuteNonQuery();
+               // }
 
-            }
+           // }
 
 
-            MessageBox.Show("Datos guardados correctamente en FACTURAENCABEZADO");
+           // MessageBox.Show("Datos guardados correctamente en FACTURAENCABEZADO");
            
            
         }
 
-        private void CargarDatosDataGridView()
-        {
-            string cadenaConexion = "Data Source=DESKTOP-09GMK57\\SQLEXPRESS;Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true";
-            string consulta = "SELECT * FROM FACTURADETALLE";
+        
 
-            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-            {
-                SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion);
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
-
-                bindingSource1.DataSource = tabla;
-            }
-        }
-
-        private void GuardarCambiosEnBD()
-        {
-            string cadenaConexion = "Data Source=DESKTOP-09GMK57\\SQLEXPRESS;Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true";
-
-            try
-            {
-                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-                {
-                    SqlDataAdapter adaptador = new SqlDataAdapter();
-                    adaptador.SelectCommand = new SqlCommand("SELECT * FROM FACTURADETALLE", conexion);
-
-                    SqlCommandBuilder constructorComandos = new SqlCommandBuilder(adaptador);
-
-                    DataTable tablaModificada = ((DataTable)bindingSource1.DataSource).GetChanges(DataRowState.Modified);
-
-                    if (tablaModificada != null)
-                    {
-                        adaptador.Update(tablaModificada);
-                        ((DataTable)bindingSource1.DataSource).AcceptChanges();
-                    }
-                }
-
-                MessageBox.Show("Cambios guardados correctamente en la base de datos.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar los cambios: " + ex.Message);
-            }
-        }
+        
 
         private void label7_Click(object sender, EventArgs e)
         {
@@ -210,5 +169,33 @@ namespace LacteosCaleb
                
             }
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            DateTime fec;
+            //fact encabezado
+            int ide = int.Parse(txtfact.Text);
+            fec = dateTimePicker1.Value;
+            string usua= txtUsuario.Text;
+            string Dni = txtDNI.Text;
+           bool est= checkBoxEstado.Checked;
+
+
+
+            Conex.Modificaciones("exec Facturadist '" + ide + "', '" + fec + "', '" + usua + "','" + Dni+ "', '" + est + "'  ");
+
+            //fact det
+            int idd = int.Parse(FactDet.Text);
+            int prod = int.Parse(producttxt.Text);
+            int cant = int.Parse(cantidadtxt.Text);
+            int preci = int.Parse(preciotextbox.Text);
+            
+
+
+            Conex.Modificaciones("exec FacturaDet '" + idd + "', '" + prod + "', '" + cant + "', '" + preci + "' ");
+            MessageBox.Show("Compra registrada con exito");
+            Conex.Grids("SELECT * FROM FACTURADETALLE", dataGridView1);
+
+        }
     }
-}
+    }
