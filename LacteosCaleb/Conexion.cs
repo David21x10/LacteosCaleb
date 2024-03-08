@@ -11,13 +11,14 @@ namespace LacteosCaleb
 {
     internal class Conexion
     {
-       
+       // string servidor = "DESKTOP-09GMK57\\SQLEXPRESS";
+       string servidor = "VIERNES\\VIERNES";
         public void buscar(string Comando, DataGridView grid, string columna)
         {
             DataSet Dsa = new DataSet();
             BindingSource bs = new BindingSource();
             DataTable dt = new DataTable();
-            string strConn = "Data Source=DESKTOP-09GMK57\\SQLEXPRESS; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true";
+            string strConn = "Data Source="+ servidor +"; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true";
             SqlConnection conn = new SqlConnection(strConn);
             SqlDataAdapter da = new SqlDataAdapter(Comando, conn);
 
@@ -39,7 +40,7 @@ namespace LacteosCaleb
         public void Grids(string Comando, DataGridView dgv)
         {
             DataSet dsa = new DataSet();
-            SqlConnection sqlCon = new SqlConnection("Data Source=DESKTOP-09GMK57\\SQLEXPRESS; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true");
+            SqlConnection sqlCon = new SqlConnection("Data Source="+servidor+"; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true");
             SqlDataAdapter sqlDA = new SqlDataAdapter(Comando, sqlCon);
             sqlDA.Fill(dsa, "Tabla");
 
@@ -53,7 +54,7 @@ namespace LacteosCaleb
         public bool Modificaciones(String Comando)
         {
 
-            SqlConnection sqlCon = new SqlConnection("Data Source=DESKTOP-09GMK57\\SQLEXPRESS; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true");
+            SqlConnection sqlCon = new SqlConnection("Data Source="+servidor+"; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true");
             SqlCommand sqlCmd = new SqlCommand(Comando, sqlCon);
 
             sqlCon.Open();
@@ -65,6 +66,29 @@ namespace LacteosCaleb
 
             return true;
         }
+
+        public SqlDataReader Reader(string cons)
+        {
+            SqlDataReader dr = null;
+            try
+            {
+                SqlConnection sqlCon = new SqlConnection("Data Source=" + servidor + "; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true");
+                
+                SqlCommand cmdInstruction = new SqlCommand(cons,sqlCon);
+                dr = cmdInstruction.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                dr = null;
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // Clean up resources if needed
+            }
+            return dr;
+        }
+
 
 
     }
