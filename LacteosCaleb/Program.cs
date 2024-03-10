@@ -16,7 +16,7 @@ namespace LacteosCaleb
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmFactura());
+            Application.Run(new FrmPrincipal());
         }
     }
 }

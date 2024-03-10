@@ -44,6 +44,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dtgcliente = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.TxtUsuarioLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgcliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -212,12 +214,33 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 41;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(1052, 2);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(15, 20);
+            this.dateTimePicker1.TabIndex = 60;
+            this.dateTimePicker1.Visible = false;
+            // 
+            // TxtUsuarioLabel
+            // 
+            this.TxtUsuarioLabel.AutoSize = true;
+            this.TxtUsuarioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUsuarioLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.TxtUsuarioLabel.Location = new System.Drawing.Point(953, 2);
+            this.TxtUsuarioLabel.Name = "TxtUsuarioLabel";
+            this.TxtUsuarioLabel.Size = new System.Drawing.Size(14, 20);
+            this.TxtUsuarioLabel.TabIndex = 62;
+            this.TxtUsuarioLabel.Text = ".";
+            // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1069, 342);
+            this.Controls.Add(this.TxtUsuarioLabel);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtbuscarcliente);
             this.Controls.Add(this.label7);
@@ -261,5 +284,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dtgcliente;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label TxtUsuarioLabel;
     }
 }

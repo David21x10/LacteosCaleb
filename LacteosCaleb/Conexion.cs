@@ -11,8 +11,8 @@ namespace LacteosCaleb
 {
     internal class Conexion
     {
-       // string servidor = "DESKTOP-09GMK57\\SQLEXPRESS";
-       string servidor = "VIERNES\\VIERNES";
+       string servidor = "DESKTOP-09GMK57\\SQLEXPRESS";
+       //string servidor = "VIERNES\\VIERNES";
         public void buscar(string Comando, DataGridView grid, string columna)
         {
             DataSet Dsa = new DataSet();
@@ -89,7 +89,10 @@ namespace LacteosCaleb
             return dr;
         }
 
-
+        public static class DatosUsuario
+        {
+            public static string Usuario { get; set; }
+        }
 
     }
 }

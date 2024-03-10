@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LacteosCaleb.Conexion;
 
 namespace LacteosCaleb
 {
@@ -16,10 +17,12 @@ namespace LacteosCaleb
         {
             InitializeComponent();
         }
-
+       
         private void factToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             FrmFactura FormularioNuevo = new FrmFactura();
+            FormularioNuevo.MostrarUsuario(DatosUsuario.Usuario);
             FormularioNuevo.Show();
             this.Hide();
         }
@@ -32,6 +35,7 @@ namespace LacteosCaleb
         private void cATEGORIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmInventario FormularioNuevo = new FrmInventario();
+            FormularioNuevo.MostrarUsuario(DatosUsuario.Usuario);
             FormularioNuevo.Show();
             this.Hide();
         }
@@ -39,13 +43,18 @@ namespace LacteosCaleb
         private void cATEGORIAToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Categoria FormularioNuevo = new Categoria();
+            FormularioNuevo.MostrarUsuario(DatosUsuario.Usuario);
             FormularioNuevo.Show();
             this.Hide();
         }
-
+        public void MostrarUsuario(string usuario)
+        {
+            usrlabel.Text = usuario;
+        }
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmProveedores FormularioNuevo = new FrmProveedores();
+            FormularioNuevo.MostrarUsuario(DatosUsuario.Usuario);
             FormularioNuevo.Show();
             this.Hide();
         }
@@ -53,6 +62,7 @@ namespace LacteosCaleb
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCliente nuevoFormulario = new FrmCliente();
+            nuevoFormulario.MostrarUsuario(DatosUsuario.Usuario);
             nuevoFormulario.Show();
             this.Hide();
         }
@@ -60,6 +70,7 @@ namespace LacteosCaleb
         private void cOMPRASToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCompras nuevoFormulario = new FrmCompras();
+            nuevoFormulario.MostrarUsuario(DatosUsuario.Usuario);
             nuevoFormulario.Show();
             this.Hide();
         }
@@ -90,6 +101,23 @@ namespace LacteosCaleb
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void usrlabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BITACORA nuevoFormulario = new BITACORA();
+            nuevoFormulario.Show();
+            this.Hide();
         }
     }
 }

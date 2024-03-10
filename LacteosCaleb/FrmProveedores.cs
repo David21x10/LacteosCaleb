@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LacteosCaleb.Conexion;
 
 namespace LacteosCaleb
 {
@@ -19,34 +20,48 @@ namespace LacteosCaleb
         Conexion Conex = new Conexion();
         private void FrmProveedores_Load(object sender, EventArgs e)
         {
-            Conex.buscar("Select * from PROVEEDORES", dtgproovedores, "NomPrv LIKE '%" + txtbuscarproveedores.Text + "%*' ");
+            
+            Conex.Grids("SELECT IdPrv as DNI, NomPrv as NOMBRE, CorPrv as CORREO, TelfPrv as TELEFONO FROM PROVEEDORES WHERE EstPrv = 1", dtgproovedores); 
+            
+        }
+
+        public void MostrarUsuario(string usuario)
+        {
+            TxtUsuarioLabel.Text = usuario;
         }
 
         private void txtbuscarproveedores_TextChanged(object sender, EventArgs e)
         {
-            Conex.buscar("Select * from PROVEEDORES", dtgproovedores, "NomPrv LIKE '%" + txtbuscarproveedores.Text + "%*' ");
+         Conex.buscar("SELECT IdPrv as DNI, NomPrv as NOMBRE, CorPrv as CORREO, TelfPrv as TELEFONO FROM PROVEEDORES WHERE EstPrv = 1", dtgproovedores, "NOMBRE LIKE '%" + txtbuscarproveedores.Text + "%*' ");  
         }
 
         private void AÑADIR_Click(object sender, EventArgs e)
         {
             string id = textBox1.Text;
             string nom = textBox2.Text;
-            string est = textBox1.Text;
+            bool est = checkBox1.Checked = true;
             string correo = textBox3.Text;
             string telefono = textBox4.Text;
             //5
             Conex.Modificaciones("exec Provagr '" + id + "', '" + nom + "', '" + est + "', '" + correo + "','" + telefono + "' ");
             MessageBox.Show("Proveedor Registrado");
-            Conex.Grids("SELECT * FROM PROVEEDORES", dtgproovedores);
+            Conex.Grids("SELECT IdPrv as DNI, NomPrv as NOMBRE, CorPrv as CORREO, TelfPrv as TELEFONO FROM PROVEEDORES WHERE EstPrv = 1", dtgproovedores);
             textBox1.Clear();
             textBox2.Clear();
             textBox3.Clear();
             textBox4.Clear();
+
+            DateTime fec;
+            fec = dateTimePicker1.Value;
+            string acti = "Añadio en PROVEEDORES";
+            string usariolabel = TxtUsuarioLabel.Text;
+            Conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FrmMenu FormularioNuevo = new FrmMenu();
+            FormularioNuevo.MostrarUsuario(DatosUsuario.Usuario);
             FormularioNuevo.Show();
             this.Hide();
         }
@@ -58,11 +73,17 @@ namespace LacteosCaleb
                 string idprv = textBox1.Text;
                 Conex.Modificaciones("exec eliminarproveedor '" + idprv + "'");
                 MessageBox.Show("SE ELIMINÓ EL PROVEEDOR CON EXITO");
-                Conex.Grids("SELECT * FROM PROVEEDORES", dtgproovedores);
+                Conex.Grids("SELECT IdPrv as DNI, NomPrv as NOMBRE, CorPrv as CORREO, TelfPrv as TELEFONO FROM PROVEEDORES WHERE EstPrv = 1", dtgproovedores);
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
                 textBox4.Clear();
+
+                DateTime fec;
+                fec = dateTimePicker1.Value;
+                string acti = "Eliminó en PROVEEDORES";
+                string usariolabel = TxtUsuarioLabel.Text;
+                Conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
 
 
 
@@ -86,17 +107,23 @@ namespace LacteosCaleb
             {
                 string id = textBox1.Text;
                 string nom = textBox2.Text;
-                string est = textBox1.Text;
+                bool est = checkBox1.Checked = true;
                 string correo = textBox3.Text;
                 string telefono = textBox4.Text;
                 //5
                 Conex.Modificaciones("exec editarProveedor '" + id + "', '" + nom + "', '" + est + "', '" + correo + "','" + telefono + "' ");
                 MessageBox.Show("Proveedor Editado");
-                Conex.Grids("SELECT * FROM PROVEEDORES", dtgproovedores);
+                Conex.Grids("SELECT IdPrv as DNI, NomPrv as NOMBRE, CorPrv as CORREO, TelfPrv as TELEFONO FROM PROVEEDORES WHERE EstPrv = 1", dtgproovedores);
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
                 textBox4.Clear();
+
+                DateTime fec;
+                fec = dateTimePicker1.Value;
+                string acti = "Editó en PROVEEDORES";
+                string usariolabel = TxtUsuarioLabel.Text;
+                Conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
             }
         }
 
@@ -113,6 +140,11 @@ namespace LacteosCaleb
             {
 
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

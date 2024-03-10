@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LacteosCaleb.Conexion;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LacteosCaleb
@@ -20,12 +21,17 @@ namespace LacteosCaleb
         Conexion conex = new Conexion();
         private void Categoria_Load(object sender, EventArgs e)
         {
-            conex.buscar("Select * from CATEGORIAS", dtgcategoria, "NomCat LIKE '%" + txtbuscarcategoria.Text + "%*' ");
+            conex.Grids("SELECT IdCat as CATEGORIA, NomCat as NOMBRE FROM CATEGORIAS", dtgcategoria);
+        }
+        public void MostrarUsuario(string usuario)
+        {
+            TxtUsuarioLabel.Text = usuario;
         }
 
         private void txtbuscarcategoria_TextChanged(object sender, EventArgs e)
         {
-            conex.buscar("Select * from CATEGORIAS", dtgcategoria, "NomCat LIKE '%" + txtbuscarcategoria.Text + "%*' ");
+             conex.buscar("SELECT IdCat as CATEGORIA, NomCat as NOMBRE FROM CATEGORIAS", dtgcategoria, "NOMBRE LIKE '%" + txtbuscarcategoria.Text + "%*' ");
+           
         }
 
         private void AÑADIR_Click(object sender, EventArgs e)
@@ -35,14 +41,21 @@ namespace LacteosCaleb
 
             conex.Modificaciones("exec CategoriaAgregada '" + id + "', '" + nom + "' ");
             MessageBox.Show("Categoria Registrada");
-            conex.Grids("SELECT * FROM CATEGORIAS", dtgcategoria);
+            conex.Grids("SELECT IdCat as CATEGORIA, NomCat as NOMBRE FROM CATEGORIAS", dtgcategoria);
             textBox1.Clear();
             textBox2.Clear();
+
+            DateTime fec;
+            fec = dateTimePicker1.Value;
+            string acti = "Añadio en CATEGORIA";
+            string usariolabel = TxtUsuarioLabel.Text;
+            conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FrmMenu nuevoFormulario = new FrmMenu();
+            nuevoFormulario.MostrarUsuario(DatosUsuario.Usuario);
             nuevoFormulario.Show();
             this.Hide();
         }
@@ -54,10 +67,15 @@ namespace LacteosCaleb
                 string idcat = textBox1.Text;
                 conex.Modificaciones("exec eliminarcategoria '" + idcat + "'");
                 MessageBox.Show("SE ELIMINÓ LA CATEGORIA CON EXITO");
-                conex.Grids("SELECT * FROM CATEGORIAS", dtgcategoria);
+                conex.Grids("SELECT IdCat as CATEGORIA, NomCat as NOMBRE FROM CATEGORIAS", dtgcategoria);
                 textBox1.Clear();
                 textBox2.Clear();
-               
+                DateTime fec;
+                fec = dateTimePicker1.Value;
+                string acti = "Eliminó en CATEGORIA";
+                string usariolabel = TxtUsuarioLabel.Text;
+                conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
+
 
 
 

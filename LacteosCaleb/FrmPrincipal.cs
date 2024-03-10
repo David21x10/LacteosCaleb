@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//INTEGRANTES
+//David Fernando Vallecillo
+//Kristhy Lizeth Maldonado Ponce
+// Maria José Cerrato Palada
+//Arony Daniel Castillo Banegas
 namespace LacteosCaleb
 {
     public partial class FrmPrincipal : Form
@@ -28,6 +33,11 @@ namespace LacteosCaleb
             FrmUsuario FormularioNuevo = new FrmUsuario();
             FormularioNuevo.Show();
             this.Hide();
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using static LacteosCaleb.Conexion;
 
 namespace LacteosCaleb
 {
@@ -20,12 +21,15 @@ namespace LacteosCaleb
         Conexion conex = new Conexion();
         private void FrmCliente_Load(object sender, EventArgs e)
         {
-            conex.buscar("Select * from CLIENTE", dtgcliente, "NomCli LIKE '%" + txtbuscarcliente.Text + "%*' ");
+            conex.Grids("select DNI as DNI, NomCli as NOMBRE ,CorCli as CORREO, TelCli as TELEFONO from CLIENTE", dtgcliente);
         }
-
+        public void MostrarUsuario(string usuario)
+        {
+            TxtUsuarioLabel.Text = usuario;
+        }
         private void txtbuscarcliente_TextChanged(object sender, EventArgs e)
         {
-            conex.buscar("Select * from CLIENTE", dtgcliente, "NomCli LIKE '%" + txtbuscarcliente.Text + "%*' ");
+            conex.buscar("select DNI as DNI, NomCli as NOMBRE ,CorCli as CORREO, TelCli as TELEFONO from CLIENTE", dtgcliente, "NOMBRE LIKE '%" + txtbuscarcliente.Text + "%*' ");
         }
 
         private void AÑADIR_Click(object sender, EventArgs e)
@@ -37,17 +41,27 @@ namespace LacteosCaleb
 
             conex.Modificaciones("exec AgreeCLI '" + id + "', '" + nom + "', '" + correo + "', '" + telefono + "' ");
             MessageBox.Show("Cliente Registrado");
-            conex.Grids("SELECT * FROM Cliente", dtgcliente);
+            conex.Grids("select DNI as DNI, NomCli as NOMBRE ,CorCli as CORREO, TelCli as Telefono from CLIENTE", dtgcliente);
             textBox1.Clear();
             textBox2.Clear();
             textBox3.Clear();
             textBox4.Clear();
 
+            DateTime fec;
+            fec = dateTimePicker1.Value;
+            string acti = "Se añadio en CLIENTES";
+            string usariolabel = TxtUsuarioLabel.Text;
+            conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel+ "', '" + acti + "'");
+
+
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             FrmMenu nuevoFormulario = new FrmMenu();
+            nuevoFormulario.MostrarUsuario(DatosUsuario.Usuario);
             nuevoFormulario.Show();
             this.Hide();
         }
@@ -73,8 +87,13 @@ namespace LacteosCaleb
                     textBox2.Clear();
                     textBox3.Clear();
                     textBox4.Clear();
-                    conex.Grids("SELECT * FROM Cliente", dtgcliente);
-                }
+                    conex.Grids("select DNI as DNI, NomCli as NOMBRE ,CorCli as CORREO, TelCli as TELEFONO from CLIENTE", dtgcliente);
+                DateTime fec;
+                fec = dateTimePicker1.Value;
+                string acti = "Se editó en CLIENTES";
+                string usariolabel = TxtUsuarioLabel.Text;
+                conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
+            }
             }
 
             private void label3_Click(object sender, EventArgs e)
@@ -84,13 +103,19 @@ namespace LacteosCaleb
                     string ideli = textBox1.Text;
                     conex.Modificaciones("exec deletecliente '" + ideli + "'");
                     MessageBox.Show("CLIENTE ELIMINADO CORRECTAMENTE");
-                    conex.Grids("SELECT * FROM CLIENTE", dtgcliente);
+                    conex.Grids("select DNI as DNI, NomCli as NOMBRE ,CorCli as CORREO, TelCli as TELEFONO from CLIENTE", dtgcliente);
                     textBox1.Clear();
                     textBox2.Clear();
                     textBox3.Clear();
                     textBox4.Clear();
 
-                }
+                DateTime fec;
+                fec = dateTimePicker1.Value;
+                string acti = "Se eliminó en CLIENTES";
+                string usariolabel = TxtUsuarioLabel.Text;
+                conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
+
+            }
             }
 
         private void dtgcliente_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -44,6 +44,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.usrlabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -55,13 +56,15 @@
             this.inventarioToolStripMenuItem,
             this.factToolStripMenuItem,
             this.proveedoresToolStripMenuItem,
-            this.clientesToolStripMenuItem});
+            this.clientesToolStripMenuItem,
+            this.bitacoraToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
             this.menuStrip1.Size = new System.Drawing.Size(598, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // inventarioToolStripMenuItem
             // 
@@ -185,6 +188,7 @@
             this.usrlabel.Size = new System.Drawing.Size(60, 18);
             this.usrlabel.TabIndex = 7;
             this.usrlabel.Text = "Usuario";
+            this.usrlabel.Click += new System.EventHandler(this.usrlabel_Click);
             // 
             // label4
             // 
@@ -198,6 +202,13 @@
             this.label4.Size = new System.Drawing.Size(45, 18);
             this.label4.TabIndex = 8;
             this.label4.Text = "¡Hola!";
+            // 
+            // bitacoraToolStripMenuItem
+            // 
+            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
+            this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
             // 
             // FrmMenu
             // 
@@ -245,5 +256,6 @@
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.Label usrlabel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
     }
 }

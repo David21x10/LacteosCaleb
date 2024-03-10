@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static LacteosCaleb.Conexion;
 
 namespace LacteosCaleb
 {
@@ -24,6 +25,7 @@ namespace LacteosCaleb
 
         }
 
+        
         SqlConnection haja = new SqlConnection("Data Source=DESKTOP-09GMK57\\SQLEXPRESS;Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true ");
         Conexion Conex = new Conexion();
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -33,24 +35,26 @@ namespace LacteosCaleb
         private void button1_Click(object sender, EventArgs e)
         {
             FrmMenu FormularioNuevo = new FrmMenu();
+            FormularioNuevo.MostrarUsuario(DatosUsuario.Usuario);
             FormularioNuevo.Show();
             this.Hide();
 
         }
 
-
+        public void MostrarUsuario(string usuario)
+        {
+            txtUsuario.Text = usuario; 
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ;
-            FrmPrincipal nuevoFormulario = new FrmPrincipal();
-            nuevoFormulario.Show();
-            this.Hide();
+           
         }
 
         private void FrmFactura_Load(object sender, EventArgs e)
         {
             autonum();
+            
 
 
             //   Conex.Grids("select * from FACTURADETALLE",dataGridView1);
@@ -59,6 +63,7 @@ namespace LacteosCaleb
 
         private void AÑADIR_Click(object sender, EventArgs e)
         {
+
             double linea = int.Parse(preciotextbox.Text) * int.Parse(cantidadtxt.Text);
             dataGridView1.Rows.Add(IdProdTxt.Text, producttxt.Text, cantidadtxt.Text, preciotextbox.Text, linea);
             
@@ -101,7 +106,11 @@ namespace LacteosCaleb
 
             // MessageBox.Show("Datos guardados correctamente en FACTURAENCABEZADO");
 
-
+            DateTime fec;
+            fec = dateTimePicker1.Value;
+            string acti = "Añadio en FACTURA";
+            string usariolabel = txtUsuario.Text;
+            Conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
         }
 
         private void calcular()
@@ -128,6 +137,12 @@ namespace LacteosCaleb
         {
             dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
             calcular();
+
+            DateTime fec;
+            fec = dateTimePicker1.Value;
+            string acti = "Borró en FACTURA";
+            string usariolabel = txtUsuario.Text;
+            Conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
         }
 
         private void label19_Click(object sender, EventArgs e)
@@ -141,8 +156,8 @@ namespace LacteosCaleb
 
         private void autonum()
         {
-            // string servidor = "DESKTOP-09GMK57\\SQLEXPRESS";
-            string servidor = "VIERNES\\VIERNES";
+             string servidor = "DESKTOP-09GMK57\\SQLEXPRESS";
+            //string servidor = "VIERNES\\VIERNES";
             string strConn = "Data Source=" + servidor + "; Initial Catalog=BD_LACTEOSCALEB; Integrated Security=true";
             SqlConnection conn = new SqlConnection(strConn);
             string query = "SELECT MAX(IdFactEn) FROM FACTURAENCABEZADO";
@@ -199,6 +214,7 @@ namespace LacteosCaleb
 
         private void label9_Click(object sender, EventArgs e)
         {
+            
             DateTime fec;
             //fact encabezado
             int ide = int.Parse(txtfact.Text);
@@ -210,25 +226,27 @@ namespace LacteosCaleb
 
 
             Conex.Modificaciones("exec Facturadist '" + ide + "', '" + fec + "', '" + usua + "','" + Dni+ "', '" + est + "'  ");
-
-            //fact det
             
+            string acti = "Pagó en FACTURA";
+            string usariolabel = txtUsuario.Text;
+            Conex.Modificaciones("exec IngresarBitacora '" + fec + "', '" + usariolabel + "', '" + acti + "'");
+            //fact det
+
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Cells[4].Value != null)
                 {
                     int idd = Convert.ToInt32(row.Cells[0].Value); 
-                    int prod = Convert.ToInt32(row.Cells[1].Value);
                     int cant = Convert.ToInt32(row.Cells[3].Value);
                     int preci = Convert.ToInt32(row.Cells[4].Value);
-                    Conex.Modificaciones("exec FacturaDet '" + idd + "', '" + prod + "', '" + cant + "', '" + preci + "' ");
-
+                    Conex.Modificaciones("exec FacturaDet '" + ide + "', '" + idd + "', '" + cant + "', '" + preci + "' ");
+                    dataGridView1.Rows.Clear();
                 }
             }
 
-
-           MessageBox.Show("Compra registrada con exito");
+            autonum();
+            MessageBox.Show("Factura registrada con exito");
 
         }
 
@@ -240,13 +258,65 @@ namespace LacteosCaleb
             dataGridView2.Columns[2].Width = 70;
             dataGridView2.Visible = true;
         }
-
+       
         private void DataGridView2_CellDoubleClick(Object sender, DataGridViewCellEventArgs e)
         {
             IdProdTxt.Text = dataGridView2.CurrentRow.Cells[0].Value.ToString();
             producttxt.Text = dataGridView2.CurrentRow.Cells[1].Value.ToString();
             preciotextbox.Text = dataGridView2.CurrentRow.Cells[2].Value.ToString();
             dataGridView2.Visible = false;
+        }
+
+        private void txtfact_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Conex.Grids("select DNI  as DNI, NomCli as Nombre , TelCli as Telefono from CLIENTE", dataGridView3);
+            dataGridView3.Columns[0].Width = 60;
+            dataGridView3.Columns[2].Width = 70;
+
+            if (dataGridView3.Visible)
+            {
+
+                dataGridView3.Hide();
+            }
+            else
+            {
+
+                dataGridView3.Show();
+            
+            }
+
+        }
+        
+
+        private void dataGridView3_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtDNI.Text = dataGridView3.CurrentRow.Cells[0].Value.ToString();
+            dataGridView3.Visible = false;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
     }

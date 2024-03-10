@@ -164,6 +164,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BITACORA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BITACORA.Designer.cs">
+      <DependentUpon>BITACORA.cs</DependentUpon>
+    </Compile>
     <Compile Include="Categoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BITACORA.resx">
+      <DependentUpon>BITACORA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Categoria.resx">
       <DependentUpon>Categoria.cs</DependentUpon>
     </EmbeddedResource>

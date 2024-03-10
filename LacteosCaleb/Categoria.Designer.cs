@@ -38,6 +38,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtbuscarcategoria = new System.Windows.Forms.TextBox();
+            this.TxtUsuarioLabel = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dtgcategoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,12 +148,33 @@
             this.txtbuscarcategoria.TabIndex = 40;
             this.txtbuscarcategoria.TextChanged += new System.EventHandler(this.txtbuscarcategoria_TextChanged);
             // 
+            // TxtUsuarioLabel
+            // 
+            this.TxtUsuarioLabel.AutoSize = true;
+            this.TxtUsuarioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUsuarioLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.TxtUsuarioLabel.Location = new System.Drawing.Point(641, 21);
+            this.TxtUsuarioLabel.Name = "TxtUsuarioLabel";
+            this.TxtUsuarioLabel.Size = new System.Drawing.Size(14, 20);
+            this.TxtUsuarioLabel.TabIndex = 65;
+            this.TxtUsuarioLabel.Text = ".";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(609, 21);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(15, 20);
+            this.dateTimePicker1.TabIndex = 64;
+            this.dateTimePicker1.Visible = false;
+            // 
             // Categoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(740, 404);
+            this.Controls.Add(this.TxtUsuarioLabel);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtbuscarcategoria);
             this.Controls.Add(this.label5);
@@ -183,5 +206,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtbuscarcategoria;
+        private System.Windows.Forms.Label TxtUsuarioLabel;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
