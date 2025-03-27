@@ -89,7 +89,7 @@
             this.txtUsur.MaxLength = 25;
             this.txtUsur.Name = "txtUsur";
             this.txtUsur.Size = new System.Drawing.Size(268, 20);
-            this.txtUsur.TabIndex = 4;
+            this.txtUsur.TabIndex = 1;
             // 
             // txtContrasena
             // 
@@ -99,7 +99,7 @@
             this.txtContrasena.Name = "txtContrasena";
             this.txtContrasena.PasswordChar = '*';
             this.txtContrasena.Size = new System.Drawing.Size(268, 20);
-            this.txtContrasena.TabIndex = 5;
+            this.txtContrasena.TabIndex = 2;
             // 
             // pictureBox1
             // 
@@ -186,7 +186,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmUsuario";
+            this.Text = "INGRESO DE USUARIO";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

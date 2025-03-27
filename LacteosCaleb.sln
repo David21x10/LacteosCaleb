@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LacteosCaleb", "LacteosCaleb\LacteosCaleb.csproj", "{5BCED276-86CF-43F4-8533-A1A33F57E2CD}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LacteosCalebSetup", "LacteosCalebSetup\LacteosCalebSetup.vdproj", "{69CD1C8C-625A-419A-9607-5526D811F1F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{5BCED276-86CF-43F4-8533-A1A33F57E2CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BCED276-86CF-43F4-8533-A1A33F57E2CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BCED276-86CF-43F4-8533-A1A33F57E2CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69CD1C8C-625A-419A-9607-5526D811F1F6}.Debug|Any CPU.ActiveCfg = Debug
+		{69CD1C8C-625A-419A-9607-5526D811F1F6}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

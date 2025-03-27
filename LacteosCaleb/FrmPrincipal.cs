@@ -24,19 +24,24 @@ namespace LacteosCaleb
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmUsuario FormularioNuevo = new FrmUsuario();
-            FormularioNuevo.Show();
+            FrmUsuario FormularioNuevo = new FrmUsuario();//muestra el formulario FrmUsuario
+            FormularioNuevo.Show();//Muestra en pantalla
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            FrmUsuario FormularioNuevo = new FrmUsuario();
-            FormularioNuevo.Show();
-            this.Hide();
+            FrmUsuario FormularioNuevo = new FrmUsuario();//Muestra el formulario FrmUsuario
+            FormularioNuevo.Show();//Muestra en pantalla
+            this.Hide();//Oculta el formulario anterior
 
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
         {
 
         }
