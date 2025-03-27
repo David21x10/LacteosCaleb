@@ -31,7 +31,7 @@ namespace LacteosCaleb
         private void BITACORA_Load(object sender, EventArgs e)
         {
             
-            //linea de codigo que mediante la variable que llama las funciones de la conexion se enlaze con la funcion grids y esta muestre los datos de la informacion de la tabla en la base de datos
+            //linea de codigo que mediante la variable que llama las funciones de la conexion se enlaze con la funcion grids y esta muestre los datos de la informacion de la tabla en la base de datos.
             conex.Grids("select  FecBit as Fecha , NomUsr as Usuario, IdActi as Actividad from TB_BITACORA", dtgbitacora);
         }
     }
